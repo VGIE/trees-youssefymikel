@@ -106,8 +106,25 @@ namespace BinaryTrees
         public int Height()
         {
             //TODO #4: Return the height of this tree
-            
-            return 0;
+            if (RightChild != null && LeftChild != null)
+            {
+
+                return 1+ Math.Max(LeftChild.Height(), RightChild.Height());
+            }
+            else if (LeftChild != null)
+            {
+
+                return 1 + Math.Max(LeftChild.Height(),0);
+            }
+            else if (RightChild != null)
+            {
+
+                return 1 + Math.Max(RightChild.Height(),0);
+            }
+            else
+            {
+                return 0;
+            }
             
         }
 
@@ -119,9 +136,32 @@ namespace BinaryTrees
             //              b) Else, we should ask the LeftChild to find the node recursively. It must be below LeftChild
             //          -If the current node has a lower key that the new node (use CompareTo()), the key should be on this node's right side.
             //          -If the current node and the new node have the same key, just return this node's value. We found it
-            
-            return default;
-            
+            if (Key.CompareTo(key) > 0)
+            {
+                if (LeftChild == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return LeftChild.Get(key);
+                }
+            }
+            else if (Key.CompareTo(key) < 0)
+            {
+                if (RightChild == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return RightChild.Get(key);
+                }
+            }
+            else if (Key.CompareTo(key) == 0)
+            {
+                return this;
+            }
         }
 
         

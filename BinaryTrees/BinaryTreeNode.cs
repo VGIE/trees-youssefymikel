@@ -161,10 +161,8 @@ namespace BinaryTrees
                     return default(TValue);
                 }
             }
-            
-        }
 
-        
+        }
 
         public BinaryTreeNode<TKey, TValue> Remove(TKey key)
         {
@@ -172,27 +170,29 @@ namespace BinaryTrees
             //so this method returns the node with which this node needs to be replaced. If this node isn't the
             //one we are looking for, we will return this, so that the parent node can replace LeftChild/RightChild
             //with the same node it had.
-            
+
             if (Key.CompareTo(key) > 0)
             {
                 if (LeftChild == null)
                 {
-                    return null;
+                    return this;
                 }
                 else
                 {
-                    return LeftChild.Remove(key);;
+                    LeftChild = LeftChild.Remove(key);
+                    return this;
                 }
             }
             else if (Key.CompareTo(key) < 0)
             {
                 if (RightChild == null)
                 {
-                    return null;
+                    return this;
                 }
                 else
                 {
-                    return RightChild.Remove(key);
+                    RightChild = RightChild.Remove(key);
+                    return this;
                 }
             }
             else
@@ -201,9 +201,20 @@ namespace BinaryTrees
                 {
                     return LeftChild;
                 }
-                else
+                else if(LeftChild==null)
                 {
                     return RightChild;
+                }
+                else
+                {
+                    BinaryTreeNode<TKey, TValue> newleaf = RightChild;
+                    BinaryTreeNode<TKey, TValue> minimunleft = newleaf;// found the left minimun value---> el nodo mas a la izquierda
+                    while (minimunleft.LeftChild != null)
+                    {
+                        minimunleft = minimunleft.LeftChild;
+                    }
+                    minimunleft.LeftChild = LeftChild;//in the leftsubtree we add the most left one, creating a new leaf
+                    return newleaf;//return the new leaf of the tree
                 }
             }
         }

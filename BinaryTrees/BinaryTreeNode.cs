@@ -152,15 +152,16 @@ namespace BinaryTrees
             }
             else
             {
-                if (RightChild == null)
-                {
-                    return default(TValue);;
-                }
-                else
+                if (RightChild != null)
                 {
                     return RightChild.Get(key);
                 }
+                else
+                {
+                    return default(TValue);
+                }
             }
+            
         }
 
         

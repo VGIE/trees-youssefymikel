@@ -143,14 +143,14 @@ namespace Trees
             while(i<Children.Count() && vfound == false)
             {
                 nodedeleted = Children.Get(i);
-                if (nodedeleted.Value.Equals(node.Value))
+                if (nodedeleted.Value.Equals(value))
                 {
                     vfound = true;
                     Children.Remove(i);
                 }
                 else
                 {
-                    nodedeleted.Remove(node.Value);
+                    nodedeleted.Remove(value);
                     i++;
                 }
             }*/

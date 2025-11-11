@@ -207,14 +207,16 @@ namespace BinaryTrees
                 }
                 else
                 {
-                    BinaryTreeNode<TKey, TValue> newleaf = RightChild;
-                    BinaryTreeNode<TKey, TValue> minimunleft = newleaf;// found the left minimun value---> el nodo mas a la izquierda
-                    while (minimunleft.LeftChild != null)
-                    {
-                        minimunleft = minimunleft.LeftChild;
-                    }
-                    minimunleft.LeftChild = LeftChild;//in the leftsubtree we add the most left one, creating a new leaf
-                    return newleaf;//return the new leaf of the tree
+                    // BinaryTreeNode<TKey, TValue> newleaf = RightChild;
+                    // BinaryTreeNode<TKey, TValue> minimunleft = newleaf;// found the left minimun value---> el nodo mas a la izquierda
+                    // while (minimunleft.LeftChild != null)
+                    // {
+                    //     minimunleft = minimunleft.LeftChild;
+                    // }
+                    // minimunleft.LeftChild = LeftChild;//in the leftsubtree we add the most left one, creating a new leaf
+                    // return newleaf;//return the new leaf of the tree
+                    RightChild.Add(LeftChild);
+                    return RightChild;
                 }
             }
         }
